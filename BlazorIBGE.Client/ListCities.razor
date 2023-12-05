@@ -1,0 +1,83 @@
+﻿@rendermode InteractiveAuto
+
+<PageTitle>Cidades</PageTitle>
+
+@if (_cities is null)
+{
+    <div class="mb-3">
+        <label class="form-label">Buscar por UF</label>
+        <input type="text" class="form-control" @bind="_city.State" />
+        <br />
+        <button class="btn btn-info" @onclick="() => GetByStateAsync(_city.State)">
+            BUSCAR
+        </button>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Buscar por Cidade</label>
+        <input type="text" class="form-control" @bind="_city.City" />
+        <br />
+        <button class="btn btn-info" @onclick="() => GetByCityAsync(_city.City)">
+            BUSCAR
+        </button>
+    </div>
+}
+else
+{
+    <div class="mb-3">
+        <button class="btn btn-danger" @onclick="() => _cities = null">
+            VOLTAR
+        </button>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Cidade</th>
+                <th>Estado</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in _cities)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.City</td>
+                    <td>@item.State</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+<br />
+<br />
+<br />
+
+@code {
+    private List<CityModel>? _cities;
+    private CityModel? _city = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        _cities = null;
+    }
+
+    public async Task GetByStateAsync(string state)
+    {
+        var client = new RestClient();
+        var request = new RestRequest($"{Configuration.ApiIbgeState}/{state}");
+
+        _cities = await client.GetAsync<List<CityModel>?>(request);
+    }
+
+    public async Task GetByCityAsync(string city)
+    {
+        var client = new RestClient();
+        var request = new RestRequest($"{Configuration.ApiIbgeCities}/{city}");
+
+        _cities = await client.GetAsync<List<CityModel>?>(request);
+    }
+}

@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34322.80
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorIBGE", "BlazorIBGE\BlazorIBGE.csproj", "{8C0FF980-6DF7-43A8-9676-4C3F59DA1689}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorIBGE.Client", "BlazorIBGE.Client\BlazorIBGE.Client.csproj", "{A39CBFD2-28CA-44B4-9886-337E18A09574}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8C0FF980-6DF7-43A8-9676-4C3F59DA1689}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C0FF980-6DF7-43A8-9676-4C3F59DA1689}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C0FF980-6DF7-43A8-9676-4C3F59DA1689}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C0FF980-6DF7-43A8-9676-4C3F59DA1689}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A39CBFD2-28CA-44B4-9886-337E18A09574}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A39CBFD2-28CA-44B4-9886-337E18A09574}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A39CBFD2-28CA-44B4-9886-337E18A09574}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A39CBFD2-28CA-44B4-9886-337E18A09574}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EA42F8C7-6FE6-42F8-93D9-5BEC6DC825CB}
+	EndGlobalSection
+EndGlobal
