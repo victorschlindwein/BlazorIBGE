@@ -2,7 +2,8 @@
 {
     public static class Configuration
     {
-        public static string ApiIbgeCities { get; set; } = "http://localhost:5071/ibge/GetByCity";
-        public static string ApiIbgeState { get; set; } = "http://localhost:5071/ibge/GetByState";
+        public static string ApiIbgeCities { get; set; } = "https://localhost:7267/ibge/GetByCity";
+        public static string ApiIbgeState { get; set; } = "https://localhost:7267/ibge/GetByState";
+        public static string ApiIbgeId { get; set; } = "https://localhost:7267/ibge/GetById";
     }
 }

@@ -1,26 +1,35 @@
-﻿@rendermode InteractiveAuto
+﻿@using System.Runtime.CompilerServices
+@rendermode InteractiveAuto
 
 <PageTitle>Cidades</PageTitle>
 
 @if (_cities is null)
-{
-    <div class="mb-3">
-        <label class="form-label">Buscar por UF</label>
-        <input type="text" class="form-control" @bind="_city.State" />
-        <br />
-        <button class="btn btn-info" @onclick="() => GetByStateAsync(_city.State)">
-            BUSCAR
-        </button>
-    </div>
+{        <div class="mb-3">
+            <label class="form-label">Buscar por UF</label>
+            <input type="text" class="form-control" @bind="_city.State" />
+            <br />
+            <button class="btn btn-info" @onclick="() => GetByStateAsync(_city.State)">
+                BUSCAR
+            </button>
+        </div>
 
-    <div class="mb-3">
-        <label class="form-label">Buscar por Cidade</label>
-        <input type="text" class="form-control" @bind="_city.City" />
-        <br />
-        <button class="btn btn-info" @onclick="() => GetByCityAsync(_city.City)">
-            BUSCAR
-        </button>
-    </div>
+        <div class="mb-3">
+            <label class="form-label">Buscar por Cidade</label>
+            <input type="text" class="form-control" @bind="_city.City" />
+            <br />
+            <button class="btn btn-info" @onclick="() => GetByCityAsync(_city.City)">
+                BUSCAR
+            </button>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Buscar por ID</label>
+            <input type="text" class="form-control" @bind="_city.Id" />
+            <br />
+            <button class="btn btn-info" @onclick="() => GetByIdAsync(_city.Id)">
+                BUSCAR
+            </button>
+        </div>
 }
 else
 {
@@ -60,17 +69,25 @@ else
     private List<CityModel>? _cities;
     private CityModel? _city = new();
 
-    protected override async Task OnInitializedAsync()
+    protected override void OnInitialized()
     {
         _cities = null;
     }
+
 
     public async Task GetByStateAsync(string state)
     {
         var client = new RestClient();
         var request = new RestRequest($"{Configuration.ApiIbgeState}/{state}");
 
-        _cities = await client.GetAsync<List<CityModel>?>(request);
+        try
+        {
+            _cities = await client.GetAsync<List<CityModel>?>(request);
+
+        }
+        catch (Exception e)
+        {
+        }
     }
 
     public async Task GetByCityAsync(string city)
@@ -78,6 +95,33 @@ else
         var client = new RestClient();
         var request = new RestRequest($"{Configuration.ApiIbgeCities}/{city}");
 
-        _cities = await client.GetAsync<List<CityModel>?>(request);
+        try
+        {
+            _cities = await client.GetAsync<List<CityModel>?>(request);
+        }
+        catch (Exception e)
+        {
+        }
+    }
+
+    public async Task GetByIdAsync(int id)
+    {
+        var list = new List<CityModel>();
+        var client = new RestClient();
+        var request = new RestRequest($"{Configuration.ApiIbgeId}/{id}");
+
+
+        try
+        {
+            var newCity = await client.GetAsync<CityModel>(request);
+            list.Add(newCity);
+        }
+        catch (Exception e)
+        {
+        }
+        finally
+        {
+            _cities = list;
+        }
     }
 }
