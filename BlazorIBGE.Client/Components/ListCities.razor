@@ -1,4 +1,5 @@
-﻿@rendermode InteractiveAuto
+﻿@using System.Runtime.CompilerServices
+@rendermode InteractiveAuto
 
 <PageTitle>Cidades</PageTitle>
 
@@ -23,7 +24,7 @@
 
         <div class="mb-3">
             <label class="form-label">Buscar por ID</label>
-            <input type="text" class="form-control" />
+            <input type="text" class="form-control" @bind="_city.Id" />
             <br />
             <button class="btn btn-info" @onclick="() => GetByIdAsync(_city.Id)">
                 BUSCAR
@@ -33,7 +34,7 @@
 else
 {
     <div class="mb-3">
-        <button class="btn btn-danger" @onclick="Reset">
+        <button class="btn btn-danger" @onclick="() => _cities = null">
             VOLTAR
         </button>
     </div>
@@ -69,11 +70,6 @@ else
     private CityModel? _city = new();
 
     protected override void OnInitialized()
-    {
-        _cities = null;
-    }
-
-    public void Reset()
     {
         _cities = null;
     }
@@ -114,18 +110,18 @@ else
         var client = new RestClient();
         var request = new RestRequest($"{Configuration.ApiIbgeId}/{id}");
 
+
         try
         {
-            var newCity = await client.GetAsync<CityModel?>(request);
-
-            if(!newCity.City.IsNormalized())
-                Reset();
-
+            var newCity = await client.GetAsync<CityModel>(request);
             list.Add(newCity);
-            _cities = list;
         }
         catch (Exception e)
         {
+        }
+        finally
+        {
+            _cities = list;
         }
     }
 }
