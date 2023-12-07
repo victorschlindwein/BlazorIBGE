@@ -87,7 +87,7 @@ else
         {
             _cities = await client.GetAsync<List<CityModel>?>(request);
         }
-        catch (Exception e)
+        catch
         {
             Reset();
         }
@@ -102,7 +102,7 @@ else
         {
             _cities = await client.GetAsync<List<CityModel>?>(request);
         }
-        catch (Exception e)
+        catch
         {
             Reset();
         }
@@ -119,17 +119,10 @@ else
         {
             var newCity = await client.GetAsync<CityModel>(request);
 
-            if (newCity.City == null)
-            {
-                Reset();
-            }
-            else
-            {
-                list.Add(newCity);
-                _cities = list;
-            }
+            list.Add(newCity);
+            _cities = list;
         }
-        catch (Exception e)
+        catch
         {
             Reset();
         }
