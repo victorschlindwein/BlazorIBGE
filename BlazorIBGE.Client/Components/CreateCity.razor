@@ -17,6 +17,11 @@
         <label class="form-label">Nome</label>
         <InputText id="CityName" type="text" class="form-control" @bind-Value="Model.City" />
     </div>
+    
+    <div class="mb-3">
+        <label class="form-label">TokenApi</label>
+        <InputText id="CityName" type="text" class="form-control" placeholder="Bearer..." @bind-Value="ApiAuthentication" />
+    </div>
 
     <button class="btn btn-success" type="submit">
         SAVE
@@ -26,13 +31,14 @@
 
 @code {
     private CityModel Model { get; set; } = new();
+    private string ApiAuthentication = String.Empty;
 
     public async Task AddCityAsync()
     {
         var client = new RestClient();
         var request = new RestRequest($"{Configuration.PostNewCity}")
             .AddHeader("Authorization",
-                Configuration.TempApiAcessToken
+                ApiAuthentication
                 )
             .AddJsonBody(Model);
 
