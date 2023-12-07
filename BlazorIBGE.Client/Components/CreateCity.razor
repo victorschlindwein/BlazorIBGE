@@ -1,0 +1,46 @@
+﻿@inject NavigationManager Navigation
+
+<PageTitle>Adicionar nova cidade</PageTitle>
+
+<EditForm Model="@Model" OnValidSubmit="AddCityAsync">
+    <div class="mb-3">
+        <label class="form-label">ID</label>
+        <InputNumber id="Id" type="number" class="form-control" @bind-Value="Model.Id" />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">UF</label>
+        <InputText id="UF" type="text" class="form-control" @bind-Value="Model.State" />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Nome</label>
+        <InputText id="CityName" type="text" class="form-control" @bind-Value="Model.City" />
+    </div>
+
+    <button class="btn btn-success" type="submit">
+        SAVE
+    </button>
+</EditForm>
+
+
+@code {
+    private CityModel Model { get; set; } = new();
+
+    public async Task AddCityAsync()
+    {
+        var client = new RestClient();
+        var request = new RestRequest($"{Configuration.PostNewCity}")
+            .AddHeader("Authorization",
+                Configuration.TempApiAcessToken
+                )
+            .AddJsonBody(Model);
+
+        var city = await client.PostAsync(request);
+
+        if (city.IsSuccessStatusCode)
+        {
+            Navigation.NavigateTo("/");
+        }
+    }
+}

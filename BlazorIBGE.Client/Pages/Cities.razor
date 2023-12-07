@@ -1,3 +1,43 @@
-﻿@page "/cities"
+﻿@rendermode InteractiveAuto
+@page "/cities"
 
-<ListCities />
+<div class="mb-3">
+    <button type="button" class="btn btn-light" onclick="@ShowList">
+        Listar
+    </button>
+
+    <button type="button" class="btn btn-dark" onclick="@ShowCreate">
+        Cadastrar
+    </button>
+</div>
+
+@switch (ShowComponent)
+{
+    case Options.List:
+        <ListCities />
+        break;
+    case Options.Create:
+        <CreateCity />
+        break;
+}
+
+@code
+{
+    enum Options
+    {
+        List,
+        Create
+    }
+
+    private Options? ShowComponent;
+
+    private void ShowList()
+    {
+        ShowComponent = Options.List;
+    }
+
+    private void ShowCreate()
+    {
+        ShowComponent = Options.Create;
+    }
+}
