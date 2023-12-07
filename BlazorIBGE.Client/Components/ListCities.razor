@@ -34,7 +34,7 @@
 else
 {
     <div class="mb-3">
-        <button class="btn btn-danger" @onclick="() => _cities = null">
+        <button class="btn btn-danger" @onclick="Reset">
             VOLTAR
         </button>
     </div>
@@ -74,6 +74,11 @@ else
         _cities = null;
     }
 
+    private void Reset()
+    {
+        _cities = null;
+    }
+
 
     public async Task GetByStateAsync(string state)
     {
@@ -83,10 +88,10 @@ else
         try
         {
             _cities = await client.GetAsync<List<CityModel>?>(request);
-
         }
         catch (Exception e)
         {
+            Reset();
         }
     }
 
@@ -101,6 +106,7 @@ else
         }
         catch (Exception e)
         {
+            Reset();
         }
     }
 
@@ -114,14 +120,20 @@ else
         try
         {
             var newCity = await client.GetAsync<CityModel>(request);
-            list.Add(newCity);
+
+            if (newCity.City == null)
+            {
+                Reset();
+            }
+            else
+            {
+                list.Add(newCity);
+                _cities = list;
+            }
         }
         catch (Exception e)
         {
-        }
-        finally
-        {
-            _cities = list;
+            Reset();
         }
     }
 }
