@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorIBGE.Client", "Blazor
 		{3EFB421A-7F27-41FC-9EB2-55162F28394D} = {3EFB421A-7F27-41FC-9EB2-55162F28394D}
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DesafioBalta", "DesafioBalta\DesafioBalta.csproj", "{3EFB421A-7F27-41FC-9EB2-55162F28394D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorIBGE.Api", "DesafioBalta\BlazorIBGE.Api.csproj", "{3EFB421A-7F27-41FC-9EB2-55162F28394D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
