@@ -4,8 +4,16 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.8.34322.80
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorIBGE", "BlazorIBGE\BlazorIBGE.csproj", "{8C0FF980-6DF7-43A8-9676-4C3F59DA1689}"
+	ProjectSection(ProjectDependencies) = postProject
+		{3EFB421A-7F27-41FC-9EB2-55162F28394D} = {3EFB421A-7F27-41FC-9EB2-55162F28394D}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorIBGE.Client", "BlazorIBGE.Client\BlazorIBGE.Client.csproj", "{A39CBFD2-28CA-44B4-9886-337E18A09574}"
+	ProjectSection(ProjectDependencies) = postProject
+		{3EFB421A-7F27-41FC-9EB2-55162F28394D} = {3EFB421A-7F27-41FC-9EB2-55162F28394D}
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DesafioBalta", "DesafioBalta\DesafioBalta.csproj", "{3EFB421A-7F27-41FC-9EB2-55162F28394D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +29,10 @@ Global
 		{A39CBFD2-28CA-44B4-9886-337E18A09574}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A39CBFD2-28CA-44B4-9886-337E18A09574}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A39CBFD2-28CA-44B4-9886-337E18A09574}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3EFB421A-7F27-41FC-9EB2-55162F28394D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3EFB421A-7F27-41FC-9EB2-55162F28394D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3EFB421A-7F27-41FC-9EB2-55162F28394D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3EFB421A-7F27-41FC-9EB2-55162F28394D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
