@@ -15,7 +15,7 @@ namespace BlazorIBGE.Client.Models
             City = city;
             State = state;
         }
-        
+
         public int Id { get; set; }
 
         [Required(ErrorMessage = "Informe o nome da cidade")]

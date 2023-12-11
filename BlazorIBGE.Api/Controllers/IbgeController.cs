@@ -1,6 +1,5 @@
 ﻿using DesafioBalta.Models;
 using DesafioBalta.Services;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 
