@@ -1,14 +1,16 @@
 ﻿@rendermode InteractiveAuto
 @attribute [StreamRendering]
-@inject NavigationManager NavigationManager
-@page "/cities"
+@attribute [Authorize]
+@page "/cities/admin"
+
+<h3>Cities Admin</h3>
 
 <div class="mb-3">
     <button type="button" class="btn btn-light" onclick="@ShowList">
         Listar
     </button>
 
-    <button type="button" class="btn btn-dark" onclick="@ShowAdmin">
+    <button type="button" class="btn btn-dark" onclick="@ShowCreate">
         Cadastrar
     </button>
 </div>
@@ -18,28 +20,28 @@
     case Options.List:
         <ListCities />
         break;
-    case Options.Admin:
-        NavigationManager.NavigateTo("/cities/admin");
+    case Options.Create:
+        <CreateCity />
         break;
 }
 
 @code
 {
-    public enum Options
+    enum Options
     {
         List,
-        Admin
+        Create
     }
 
-    public static Options? ShowComponent;
+    private Options? ShowComponent;
 
     private void ShowList()
     {
         ShowComponent = Options.List;
     }
 
-    private void ShowAdmin()
+    private void ShowCreate()
     {
-        ShowComponent = Options.Admin;
+        ShowComponent = Options.Create;
     }
 }

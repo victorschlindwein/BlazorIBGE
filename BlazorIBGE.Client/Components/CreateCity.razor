@@ -1,18 +1,11 @@
-﻿@using System.Diagnostics.CodeAnalysis
+﻿@attribute [StreamRendering]
 @inject NavigationManager Navigation
 
 <PageTitle>Adicionar nova cidade</PageTitle>
 
 <EditForm Model="@Model" OnValidSubmit="AddCityAsync">
     <DataAnnotationsValidator />
-
-    <div class="mb-3">
-        <label class="form-label">ID</label>
-        <InputNumber id="Id" type="number" class="form-control" @bind-Value="Model.Id"/>
-        <ValidationMessage For="@(() => Model.Id)" />
-    </div>
-
-    <div class="mb-3">
+<div class="mb-3">
         <label class="form-label">UF</label>
         <InputText id="UF" type="text" class="form-control" @bind-Value="Model.State"/>
         <ValidationMessage For="@(() => Model.State)" />
@@ -24,12 +17,6 @@
         <ValidationMessage For="@(() => Model.City)" />
     </div>
 
-    <div class="mb-3">
-        <label class="form-label">TokenApi</label>
-        <InputText id="CityName" type="text" class="form-control" placeholder="Bearer..." @bind-Value="ApiAuthentication"/>
-        <ValidationMessage For="@(() => ApiAuthentication)" />
-    </div>
-
     <button class="btn btn-success" type="submit">
         SAVE
     </button>
@@ -37,14 +24,14 @@
 
 <br/>
 
-@if (sucess == true)
+@if (_success == true)
 {
     <div class="alert alert-success" role="alert" >
         Registro adicionado com sucesso!
     </div>
 }
 
-@if (sucess == false)
+@if (_success == false)
 {
     <div class="alert alert-danger" role="alert">
         Algo deu errado!
@@ -52,33 +39,35 @@
 }
 
 @code {
-    private CityModel Model { get; set; } = new();
-    private string ApiAuthentication = String.Empty;
-    private bool? sucess = null;
+    private CreateCityModelViewModel Model { get; set; } = new();
+    private bool? _success = null;
 
     public async Task AddCityAsync()
     {
+
+        var newCity = new CityModel
+        {
+            City = Model.City,
+            State = Model.State
+        };
+
         var client = new RestClient();
-        var request = new RestRequest($"{Configuration.PostNewCity}")
-            .AddHeader("Authorization",
-                ApiAuthentication
-                )
-            .AddJsonBody(Model);
+        var request = new RestRequest($"{RoutesConfiguration.PostNewCity}")
+            .AddJsonBody(newCity);
 
         try
         {
             var city = await client.PostAsync(request);
             if (city.IsSuccessStatusCode)
             {
-                sucess = true;
+                _success = true;
                 Model.City = String.Empty;
                 Model.State = String.Empty;
-                Model.Id = 0;
             }
         }
         catch
         {
-            sucess = false;
+            _success = false;
         }
     }
 }

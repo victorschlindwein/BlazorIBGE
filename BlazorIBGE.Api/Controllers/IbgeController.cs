@@ -18,7 +18,6 @@ namespace DesafioBalta.Controllers
         }
 
         [HttpPost]
-        [Authorize]
         [Route("create")]
         public async Task<IActionResult> CreateNew(Ibge ibge)
         {
@@ -75,7 +74,6 @@ namespace DesafioBalta.Controllers
         }
 
         [HttpPut]
-        [Authorize]
         [Route("update/{id}")]
         public async Task<IActionResult> UpdateIbge(int id, Ibge ibge)
         {
@@ -87,7 +85,6 @@ namespace DesafioBalta.Controllers
         }
 
         [HttpDelete]
-        [Authorize]
         [Route("delete/{id}")]
         public async Task<IActionResult> Delete(int id)
         {

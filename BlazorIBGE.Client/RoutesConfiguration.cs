@@ -1,6 +1,6 @@
 ﻿namespace BlazorIBGE
 {
-    public static class Configuration
+    public static class RoutesConfiguration
     {
         public static string GetApiIbgeCities { get; set; } = "https://localhost:7277/ibge/GetByCity";
         public static string GetApiIbgeState { get; set; } = "https://localhost:7277/ibge/GetByState";
